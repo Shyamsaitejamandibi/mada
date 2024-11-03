@@ -341,7 +341,7 @@ while True:
     
     # backward pass, with gradient scaling if training in fp16
 
-    loss.backward(create_graph = True)
+    loss.backward()
     mw.optimizer.parameters['alpha'].grad = torch.zeros_like(mw.optimizer.parameters['alpha'].grad)
     if adam:
         for n, p in mw.optimizer.parameters.items():
@@ -368,7 +368,6 @@ while True:
    
     
     device_id =  device[-1]
-    print(device_id)
     # timing and logging
     t1 = time.time()
     dt = t1 - t0
